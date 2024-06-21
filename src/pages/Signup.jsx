@@ -1,5 +1,6 @@
 import { useState } from "react";
 import signupValidator from "../validators/signupValidator";
+import axios from "axios";
 
 const initialFormData = {
   name: "",
@@ -17,12 +18,13 @@ const initialFormError = {
 const Signup = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [formError, setFormError] = useState(initialFormError);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = signupValidator({
       name: formData.name,
@@ -39,7 +41,27 @@ const Signup = () => {
     ) {
       setFormError(errors);
     } else {
-      setFormError(initialFormError);
+      try {
+        setLoading(true);
+        //api request
+        const requestBody = {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        };
+        const response = await axios.post(
+          "http://127.0.0.1:8000/api/v1/auth/signup",
+          requestBody
+        );
+        console.log(response);
+
+        setFormData(initialFormData);
+        setFormError(initialFormError);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log(error.message);
+      }
     }
     console.log(formData);
   };
@@ -103,7 +125,11 @@ const Signup = () => {
         </div>
 
         <div className="form-group">
-          <input className="button" type="submit" value="Signup" />
+          <input
+            className="button"
+            type="submit"
+            value={`${loading ? "saving..." : "signup"}`}
+          />
         </div>
       </form>
     </div>
