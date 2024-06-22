@@ -1,6 +1,7 @@
 import { useState } from "react";
 import signupValidator from "../validators/signupValidator";
-import axios from "axios";
+import axios from "../utils/axiosInstance";
+import { toast } from "react-toastify";
 
 const initialFormData = {
   name: "",
@@ -49,17 +50,21 @@ const Signup = () => {
           email: formData.email,
           password: formData.password,
         };
-        const response = await axios.post(
-          "http://127.0.0.1:8000/api/v1/auth/signup",
-          requestBody
-        );
-        console.log(response);
+        const response = await axios.post("/auth/signup", requestBody);
+        const data = response.data;
+        // console.log(response);
+        // console.log(data.message);
+
+        toast.success(data.message);
 
         setFormData(initialFormData);
         setFormError(initialFormError);
         setLoading(false);
       } catch (error) {
         setLoading(false);
+        const response = error.response;
+        const data = response.data;
+        toast.error(data.message);
         console.log(error.message);
       }
     }
