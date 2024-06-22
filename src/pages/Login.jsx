@@ -37,16 +37,19 @@ const Login = () => {
       try {
         setLoading(true);
         //api request
-        
+
         const response = await axios.post("/auth/signin", formData);
         const data = response.data;
+
+        window.localStorage.setItem("blogData", JSON.stringify(data.data));
+        console.log(data);
 
         toast.success(data.message);
 
         setFormData(initialFormData);
         setFormError(initialFormError);
         setLoading(false);
-        // navigate("/login")
+        navigate("/");
       } catch (error) {
         setLoading(false);
         const response = error.response;
