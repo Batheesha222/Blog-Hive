@@ -44,9 +44,8 @@ const NewCategory = () => {
         setFormError(initialFormError);
         setLoading(false);
 
-        console.log("abc");
 
-        // navigate("/categories");
+        navigate("/categories");
       } catch (error) {
         setLoading(false);
         const response = error.response;
