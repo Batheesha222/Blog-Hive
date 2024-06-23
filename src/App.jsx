@@ -10,22 +10,29 @@ import Setting from "./pages/Setting";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PublicLayout from "./components/layout/PublicLayout";
+import NewCategory from "./pages/category/NewCategory";
+import UpdateCategory from "./pages/category/UpdateCategory";
 
 function App() {
   return (
     <>
       <Routes>
         <Route element={<PrivateLayout />}>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="categories" element={<CategoryList />}></Route>
-          <Route path="posts" element={<PostList />}></Route>
-          <Route path="profile" element={<Profile />}></Route>
-          <Route path="setting" element={<Setting />}></Route>
+          <Route path="/" element={<Home />} />
+          <Route path="categories" element={<CategoryList />} />
+          <Route path="categories/new-category" element={<NewCategory />} />
+          <Route
+            path="categories/update-category"
+            element={<UpdateCategory />}
+          />
+          <Route path="posts" element={<PostList />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="setting" element={<Setting />} />
         </Route>
 
         <Route element={<PublicLayout />}>
           <Route path="signup" element={<Signup />} />
-          <Route path="login" element={<Login />} />F
+          <Route path="login" element={<Login />} />
         </Route>
       </Routes>
       <ToastContainer />
