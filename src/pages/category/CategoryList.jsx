@@ -128,7 +128,7 @@ const CategoryList = () => {
                 <th>
                   <button
                     className="button"
-                    onClick={() => navigate("update-category")}
+                    onClick={() => navigate(`update-category/${category._id}`)}
                   >
                     Update
                   </button>
