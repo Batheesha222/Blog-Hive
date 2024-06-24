@@ -1,11 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import placeImage from "../../assets/images/place.jpeg";
 
+
 const DetailPost = () => {
+  const navigate = useNavigate()
   return (
     <div>
-      <button className="button button-block">Go Back</button>
-      <button className="button button-block">Update Post</button>
-      <button className="button button-block">Delete Post</button>
+      <button className="button button-block" onClick={()=>navigate(-1)}>Go Back</button>
+      <button className="button button-block" onClick={()=>navigate("/posts/update-post")}>Update Post</button>
+      <button className="button button-block" >Delete Post</button>
       <div className="detail-container">
         <h2 className="post-title">Post Title</h2>
         <h5 className="post-category">Category: Category 1</h5>
