@@ -64,7 +64,7 @@ const DetailPost = () => {
       </button>
       <button
         className="button button-block"
-        onClick={() => navigate("/posts/update-post")}
+        onClick={() => navigate(`/posts/update-post/${postId}`)}
       >
         Update Post
       </button>
