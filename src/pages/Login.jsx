@@ -42,7 +42,7 @@ const Login = () => {
         const data = response.data;
 
         window.localStorage.setItem("blogData", JSON.stringify(data.data));
-        console.log(data);
+        // console.log(data);
 
         toast.success(data.message);
 
@@ -52,13 +52,14 @@ const Login = () => {
         navigate("/");
       } catch (error) {
         setLoading(false);
+        setFormError(initialFormError);
         const response = error.response;
         const data = response.data;
 
         toast.error(data.message);
       }
     }
-    console.log(formData);
+    // console.log(formData);
   };
 
   return (
