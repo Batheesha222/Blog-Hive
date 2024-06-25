@@ -1,4 +1,3 @@
-import placeImg from "../../assets/images/place.jpeg";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
