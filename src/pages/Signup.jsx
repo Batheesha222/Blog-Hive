@@ -22,7 +22,7 @@ const Signup = () => {
   const [formError, setFormError] = useState(initialFormError);
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -60,9 +60,10 @@ const Signup = () => {
         setFormData(initialFormData);
         setFormError(initialFormError);
         setLoading(false);
-        navigate("/login")
+        navigate("/login");
       } catch (error) {
         setLoading(false);
+        setFormError(initialFormError);
         const response = error.response;
         const data = response.data;
         toast.error(data.message);
