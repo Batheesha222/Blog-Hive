@@ -70,7 +70,7 @@ const NewPost = () => {
         const response = await axios.post("/posts", input);
         const data = response.data;
 
-        console.log(data)
+        // console.log(data)
 
         toast.success(data.message);
 
@@ -91,7 +91,7 @@ const NewPost = () => {
   };
 
   const handleFileChange = async (e) =>{
-    console.log(e.target.files)
+    // console.log(e.target.files)
     const formInput = new FormData();
     formInput.append("image",e.target.files[0])
 
